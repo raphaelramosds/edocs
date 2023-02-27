@@ -29,8 +29,10 @@
 
                             <div class="pl-4 w-full">
                                 <div class="flex">
-                                    <span class="flex-1">Edital N°{{ $item->document->number }}
-                                        {{ $item->document->description }}</span>
+                                    <span class="flex-1">
+                                        Edital N°{{ $item->document->number }}
+                                        {{ $item->document->description }}/{{ explode('-',$item->document->released_at)[0] }}
+                                    </span>
                                 </div>
                                 <small>Inscrições de {{ $item->begin_date }} a {{ $item->end_date }}</small>
                             </div>
