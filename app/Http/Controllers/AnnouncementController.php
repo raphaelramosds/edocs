@@ -62,6 +62,12 @@ class AnnouncementController extends Controller
     public function edit(Announcement $announcement)
     {
         //
+
+        $announcement = Announcement::with('document')->find($announcement->id);
+
+        return view('announcements.edit', [
+            'announcement' => $announcement
+        ]);
     }
 
     /**
@@ -70,6 +76,10 @@ class AnnouncementController extends Controller
     public function update(Request $request, Announcement $announcement)
     {
         //
+        
+        dd($request->all());
+
+        return redirect()->route('announcements.index');
     }
 
     /**

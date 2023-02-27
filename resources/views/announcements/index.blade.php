@@ -52,7 +52,7 @@
                                 </x-slot>
 
                                 <x-slot name="content">
-                                    <x-dropdown-link>
+                                    <x-dropdown-link :href="route('announcements.edit',$item)">
                                         {{ __('Editar') }}
                                     </x-dropdown-link>
 
