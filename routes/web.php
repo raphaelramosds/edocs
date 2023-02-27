@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('announcements', AnnouncementController::class)
-    ->only('index','create','store','edit','update')
+    ->only(['index','create','store','edit','update', 'destroy'])
     ->middleware(['auth','verified']);
 
 Route::get('/announcements', [AnnouncementController::class, 'index'])->name('announcements.index');

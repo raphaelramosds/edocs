@@ -31,13 +31,15 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // create a document
 
         $document = Document::with('documents.announcements')->create([
             'number' => $request->number,
             'description' => $request->description,
             'released_at' => $request->released_at
         ]);
+
+        // create a announcement related to it
 
         $document->announcement()->create([
             'begin_date' => $request->begin_date,
@@ -61,8 +63,6 @@ class AnnouncementController extends Controller
      */
     public function edit(Announcement $announcement)
     {
-        //
-
         $announcement = Announcement::with('document')->find($announcement->id);
 
         return view('announcements.edit', [
@@ -75,9 +75,20 @@ class AnnouncementController extends Controller
      */
     public function update(Request $request, Announcement $announcement)
     {
-        //
+        // update announcement
         
-        dd($request->all());
+        $announcement->update([
+            'begin_date' => $request->begin_date,
+            'end_date' => $request->end_date
+        ]);
+
+        // update related document
+
+        $announcement->document()->update([
+            'number' => $request->number,
+            'description' => $request->description,
+            'released_at' => $request->released_at
+        ]);
 
         return redirect()->route('announcements.index');
     }
@@ -87,6 +98,7 @@ class AnnouncementController extends Controller
      */
     public function destroy(Announcement $announcement)
     {
-        //
+        $announcement->document()->delete();
+        return redirect(route('announcements.index'));
     }
 }

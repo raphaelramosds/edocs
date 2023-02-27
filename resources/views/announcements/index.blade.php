@@ -12,7 +12,7 @@
 
             <!-- List announcements -->
 
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     @foreach ($announcements as $item)
                         <div class="flex py-2">
@@ -52,12 +52,13 @@
                                 </x-slot>
 
                                 <x-slot name="content">
-                                    <x-dropdown-link :href="route('announcements.edit',$item)">
+                                    <x-dropdown-link :href="route('announcements.edit', $item)">
                                         {{ __('Editar') }}
                                     </x-dropdown-link>
 
-                                    <form method="POST" action="#">
+                                    <form method="POST" action="{{ route('announcements.destroy', $item) }}">
                                         @csrf
+                                        @method('delete')
                                         <x-dropdown-link
                                             onclick="event.preventDefault();
                                                                 this.closest('form').submit();">
