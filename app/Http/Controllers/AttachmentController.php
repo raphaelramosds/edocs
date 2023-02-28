@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateAttachmentRequest;
+use App\Models\Announcement;
 use App\Models\Attachment;
 use Illuminate\Http\Request;
 
@@ -10,9 +12,11 @@ class AttachmentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Announcement $announcement)
     {
-        //
+        $attachments = $announcement->attachments()->get();
+
+        return view('announcements.attachments.index', compact('announcement','attachments'));
     }
 
     /**
@@ -26,9 +30,15 @@ class AttachmentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUpdateAttachmentRequest $request, Announcement $announcement)
     {
-        //
+        $data = $request->all();
+
+        $data['file'] = $request->file->store('attachments');
+
+        $announcement->attachments()->create($data);
+
+        return redirect()->route('announcements.attachments.index', compact('announcement'));
     }
 
     /**
@@ -58,8 +68,10 @@ class AttachmentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Attachment $attachment)
+    public function destroy(Announcement $announcement, Attachment $attachment)
     {
-        //
+        $attachment->delete();
+        
+        return redirect()->route('announcements.attachments.index', compact('announcement'));
     }
 }

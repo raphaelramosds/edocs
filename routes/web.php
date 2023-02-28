@@ -1,8 +1,8 @@
  <?php
 
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\ProfileController;
-use App\Models\Announcement;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +34,8 @@ Route::resource('announcements', AnnouncementController::class)
     ->only(['index','create','store','edit','update', 'destroy'])
     ->middleware(['auth','verified']);
 
-Route::get('/announcements', [AnnouncementController::class, 'index'])->name('announcements.index');
+Route::resource('announcements.attachments', AttachmentController::class)
+    ->only(['index','store','destroy'])
+    ->middleware(['auth','verified']);
 
 require __DIR__.'/auth.php';

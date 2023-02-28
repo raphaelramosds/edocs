@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('attachments', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->string('file');
+            $table->string('description');
+            $table->foreignId('announcement_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

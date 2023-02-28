@@ -14,7 +14,7 @@
 
             <div class="bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    @foreach ($announcements as $item)
+                    @foreach ($announcements as $announcement)
                         <div class="flex py-2">
 
                             <!-- Doc icon -->
@@ -30,11 +30,11 @@
                             <div class="pl-4 w-full">
                                 <div class="flex">
                                     <span class="flex-1">
-                                        Edital N°{{ $item->document->number }}
-                                        {{ $item->document->description }}/{{ explode('-',$item->document->released_at)[0] }}
+                                        Edital N°{{ $announcement->document->number }}
+                                        {{ $announcement->document->description }}/{{ explode('-',$announcement->document->released_at)[0] }}
                                     </span>
                                 </div>
-                                <small>Inscrições de {{ $item->begin_date }} a {{ $item->end_date }}</small>
+                                <small>Inscrições de {{ $announcement->begin_date }} a {{ $announcement->end_date }}</small>
                             </div>
 
                             <!-- Actions -->
@@ -54,11 +54,11 @@
                                 </x-slot>
 
                                 <x-slot name="content">
-                                    <x-dropdown-link :href="route('announcements.edit', $item)">
+                                    <x-dropdown-link :href="route('announcements.edit', $announcement)">
                                         {{ __('Editar') }}
                                     </x-dropdown-link>
 
-                                    <form method="POST" action="{{ route('announcements.destroy', $item) }}">
+                                    <form method="POST" action="{{ route('announcements.destroy', $announcement) }}">
                                         @csrf
                                         @method('delete')
                                         <x-dropdown-link
@@ -67,6 +67,11 @@
                                             {{ __('Excluir') }}
                                         </x-dropdown-link>
                                     </form>
+
+                                    <x-dropdown-link :href="route('announcements.attachments.index', [$announcement])">
+                                        {{ __('Anexos') }}
+                                    </x-dropdown-link>
+
                                 </x-slot>
                             </x-dropdown>
 

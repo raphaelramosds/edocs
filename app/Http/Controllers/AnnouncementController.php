@@ -99,6 +99,7 @@ class AnnouncementController extends Controller
     public function destroy(Announcement $announcement)
     {
         $announcement->document()->delete();
+        
         return redirect(route('announcements.index'));
     }
 }

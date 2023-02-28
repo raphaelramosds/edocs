@@ -17,21 +17,21 @@
                         <div>
                             <x-input-label for="number" :value="__('Número')" />
                             <x-text-input id="number" class="block mt-1 w-full" type="number" name="number"
-                                :value="old('number')" required autofocus autocomplete="number" />
+                                :value="old('number')" required autofocus />
                             <x-input-error :messages="$errors->get('number')" class="mt-2" />
                         </div>
 
                         <div>
                             <x-input-label for="description" :value="__('Descrição')" />
                             <x-text-input id="description" class="block mt-1 w-full" type="text" name="description"
-                                :value="old('description')" required autofocus autocomplete="number" />
+                                :value="old('description')" required autofocus />
                             <x-input-error :messages="$errors->get('description')" class="mt-2" />
                         </div>
 
                         <div>
                             <x-input-label for="released_at" :value="__('Data de publicação')" />
                             <x-text-input id="released_at" class="block mt-1 w-full" type="date" name="released_at"
-                                :value="old('released_at')" required autofocus autocomplete="number" />
+                                :value="old('released_at')" required autofocus />
                             <x-input-error :messages="$errors->get('released_at')" class="mt-2" />
                         </div>
 
@@ -40,14 +40,14 @@
                         <div>
                             <x-input-label for="begin_date" :value="__('Início das inscrições')" />
                             <x-text-input id="begin_date" class="block mt-1 w-full" type="date" name="begin_date"
-                                :value="old('begin_date')" required autofocus autocomplete="number" />
+                                :value="old('begin_date')" required autofocus />
                             <x-input-error :messages="$errors->get('begin_date')" class="mt-2" />
                         </div>
 
                         <div>
                             <x-input-label for="end_date" :value="__('Fim das inscrições')" />
                             <x-text-input id="end_date" class="block mt-1 w-full" type="date" name="end_date"
-                                :value="old('end_date')" required autofocus autocomplete="number" />
+                                :value="old('end_date')" required autofocus />
                             <x-input-error :messages="$errors->get('end_date')" class="mt-2" />
                         </div>
 

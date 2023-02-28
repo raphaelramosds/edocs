@@ -18,4 +18,9 @@ class Announcement extends Model
     public function document() {
         return $this->belongsTo(Document::class);
     }
+
+    public function attachments() {
+        return $this->hasMany(Attachment::class);
+    }
+
 }
