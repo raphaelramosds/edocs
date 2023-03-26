@@ -1,4 +1,4 @@
-<h1 style="text-align:center">📄 <b>Edocs</b></h1>
+<h1 align="center">📄 <b>Edocs</b></h1>
 
 ![Edocs demo](./assets/demo.gif)
 
