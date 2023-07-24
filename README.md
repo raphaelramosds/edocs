@@ -1,7 +1,5 @@
 <h1 align="center">📄 <b>Edocs</b></h1>
 
-![Edocs demo](./assets/demo.gif)
-
 ## 🚀 Technologies
 
 This application was built with
